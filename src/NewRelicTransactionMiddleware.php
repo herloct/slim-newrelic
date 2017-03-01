@@ -20,7 +20,7 @@ class NewRelicTransactionMiddleware
     /**
      * TransactionMiddleware constructor.
      *
-     * @param Agent $newRelic
+     * @param Agent $newRelic New Relic Agent.
      */
     public function __construct(Agent $newRelic)
     {
