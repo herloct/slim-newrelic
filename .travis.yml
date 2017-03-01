@@ -11,17 +11,25 @@ php:
 before_script:
   - composer self-update
   - composer install
-  - wget https://github.com/satooshi/php-coveralls/releases/download/v1.0.1/coveralls.phar
+  - composer global require satooshi/php-coveralls codeclimate/php-test-reporter
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
 
 script:
   - mkdir -p build/logs
   - vendor/bin/phpunit
 
 after_script:
-  - travis_retry php coveralls.phar -v
+  - travis_retry coveralls -v
+
+after_success:
+  - travis_retry test-reporter
 
 matrix:
   fast_finish: true
   allow_failures:
     - php: nightly
     - php: hhvm
+
+addons:
+  code_climate:
+    repo_token: abcf655c83810e4db2924f6f3be83db60306352fee60a05bd158fa2905403080
