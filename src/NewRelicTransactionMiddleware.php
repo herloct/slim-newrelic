@@ -37,14 +37,14 @@ class NewRelicTransactionMiddleware
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, $next)
     {
-        $name = $this->getTransactionName($request, $response);
+        $name = $this->getTransactionName($request);
         $this->newRelic->nameTransaction($name);
 
         if ($name === static::FALLBACK_NAME) {
-            $e = new NotFoundException($request, $response);
-            $this->newRelic->noticeError($e->getMessage(), $e);
+            $exception = new NotFoundException($request, $response);
+            $this->newRelic->noticeError($exception->getMessage(), $exception);
 
-            throw $e;
+            throw $exception;
         }
 
         return $next($request, $response);
@@ -54,11 +54,10 @@ class NewRelicTransactionMiddleware
      * Get transaction name to send to New Relic agent.
      *
      * @param ServerRequestInterface $request
-     * @param ResponseInterface $response
      *
      * @return string|null
      */
-    protected function getTransactionName(ServerRequestInterface $request, ResponseInterface $response)
+    protected function getTransactionName(ServerRequestInterface $request)
     {
         /* @var $route Route */
         $route = $request->getAttribute('route');
