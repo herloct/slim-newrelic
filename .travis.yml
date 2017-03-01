@@ -1,0 +1,27 @@
+language: php
+sudo: false
+
+php:
+  - 5.6
+  - 7.0
+  - 7.1
+  - nightly
+  - hhvm
+
+before_script:
+  - composer self-update
+  - composer install
+  - wget https://github.com/satooshi/php-coveralls/releases/download/v1.0.1/coveralls.phar
+
+script:
+  - mkdir -p build/logs
+  - vendor/bin/phpunit
+
+after_script:
+  - travis_retry php coveralls.phar -v
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - php: nightly
+    - php: hhvm
