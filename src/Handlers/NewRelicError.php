@@ -23,7 +23,7 @@ class NewRelicError
      * NewRelicError constructor.
      *
      * @param Agent $newRelic New Relic Agent.
-     * @param callable $error Slim's Error or PhpError handler.
+     * @param callable $error Slim's Error handler.
      */
     public function __construct(Agent $newRelic, callable $error)
     {
@@ -34,14 +34,14 @@ class NewRelicError
     /**
      * Invoke error handler
      *
-     * @param ServerRequestInterface $request   The most recent Request object
-     * @param ResponseInterface      $response  The most recent Response object
-     * @param \Exception|\Throwable  $exception The caught Exception object, or Throwable objrct for PHP7
+     * @param ServerRequestInterface $request The most recent Request object
+     * @param ResponseInterface $response The most recent Response object
+     * @param \Exception $exception The caught Exception object
      *
      * @return ResponseInterface
      * @throws UnexpectedValueException
      */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, $exception)
+    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, \Exception $exception)
     {
         $this->newRelic->noticeError($exception->getMessage(), $exception);
 

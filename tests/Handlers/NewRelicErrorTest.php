@@ -27,7 +27,7 @@ class NewRelicErrorTest extends TestCase
         $actualException = null;
 
         $agent = $this->getAgent();
-        $agent->noticeError(Argument::type('string'), Argument::any())
+        $agent->noticeError(Argument::type('string'), Argument::type(\Exception::class))
             ->will(function ($args) use (&$actualMessage, &$actualException) {
                 $actualMessage = $args[0];
                 $actualException = $args[1];

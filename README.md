@@ -71,17 +71,6 @@ $app->get('/hello/{name}', function ($request, $response, $args) {
 $app->run();
 ```
 
-If you're using PHP7, you could also add `phpErrorHandler` too.
-
-```php
-$config['phpErrorHandler'] = function ($c) {
-    $agent = $c->get(\SobanVuex\NewRelic\Agent::class);
-    $errorHandler = new \Slim\Handlers\PhpError($c->get('settings')['displayErrorDetails']);
-
-    return new \Herloct\Slim\Handlers\NewRelicError($agent, $errorHandler);
-}
-```
-
 ## Customizing transaction names
 
 By default the transaction name will use the route's name. If that fails, it will use the
