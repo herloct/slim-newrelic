@@ -1,4 +1,7 @@
-/.idea/
-
 /vendor/
 /build/
+composer.lock
+
+# my local setup
+/.idea/
+docker-compose.override.yml
