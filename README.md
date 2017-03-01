@@ -78,7 +78,7 @@ $config['phpErrorHandler'] = function ($c) {
     $agent = $c->get(\SobanVuex\NewRelic\Agent::class);
     $errorHandler = new \Slim\Handlers\PhpError($c->get('settings')['displayErrorDetails']);
 
-    return new \Herloct\Slim\Handlers\NewRelicPhpError($agent, $errorHandler);
+    return new \Herloct\Slim\Handlers\NewRelicError($agent, $errorHandler);
 }
 ```
 
