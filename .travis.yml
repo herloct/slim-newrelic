@@ -11,7 +11,7 @@ php:
 before_script:
   - composer self-update
   - composer install
-  - composer global require satooshi/php-coveralls codeclimate/php-test-reporter
+  - composer global require codeclimate/php-test-reporter
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
 
 script:
@@ -19,9 +19,6 @@ script:
   - vendor/bin/phpunit
 
 after_script:
-  - travis_retry coveralls -v
-
-after_success:
   - travis_retry test-reporter
 
 matrix:
