@@ -97,9 +97,10 @@ class NewRelicTransactionMiddlewareTest extends TestCase
         $exceptionThrown = false;
 
         $agent = $this->getAgent();
-        $agent->noticeError(Argument::type('string'), Argument::type(NotFoundException::class))->will(function ($args) use (&$exceptionThrown) {
-            $exceptionThrown = true;
-        });
+        $agent->noticeError(Argument::type('string'), Argument::type(NotFoundException::class))
+            ->will(function ($args) use (&$exceptionThrown) {
+                $exceptionThrown = true;
+            });
         $agent->nameTransaction(Argument::type('string'))->will(function ($args) use (&$actual) {
             $actual = $args[0];
         });
