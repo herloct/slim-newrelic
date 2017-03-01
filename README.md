@@ -1,8 +1,15 @@
 # slim-newrelic
 
+[![Build Status](https://travis-ci.org/herloct/slim-newrelic.svg?branch=master)](https://travis-ci.org/herloct/slim-newrelic)
+[![Test Coverage](https://codeclimate.com/github/herloct/slim-newrelic/badges/coverage.svg)](https://codeclimate.com/github/herloct/slim-newrelic/coverage)
+[![Code Climate](https://codeclimate.com/github/herloct/slim-newrelic/badges/gpa.svg)](https://codeclimate.com/github/herloct/slim-newrelic)
+
 This library provides New Relic instrumentation for the Slim framework.
 When installed this library will ensure that your transactions are properly
 named and that your exceptions are properly logged in New Relic.
+
+Using @nordsoftware's [nordsoftware/lumen-newrelic](https://github.com/nordsoftware/lumen-newrelic) as a 
+reference.
 
 ## License
 
